@@ -1,32 +1,12 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import './homepage.scss'
+import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const Venues = () => {
-    const [venues, setVenues] =useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchVenues = async () => {
-            try {
-                const response = await  fetch ('https://v2.api.noroff.dev/holidaze/venues');
-
-                if(!response.ok) {
-                    throw new Error('Failed to fetch venues');
-                }
-                const jsonResponse = await response.json();
-                setVenues(jsonResponse.data);
-                setLoading(false);
-                console.log(jsonResponse)
-            } catch (error) {
-                setError(error.message);
-                setLoading(false);
-            }
-
-        };
-        fetchVenues();
-
-    }, []);
+    const filteredVenues = useSelector((state) => state.filteredVenues.value);
+    const loading = useSelector((state) => state.filteredVenues.loading);
+    const error = useSelector((state) => state.filteredVenues.errorLoading);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -38,23 +18,23 @@ const Venues = () => {
 
     return (
         <div className="container">
-            <h1 className="text-center">All Venues:</h1>
+            <h5 className="text-center fw-bold">All Venues:</h5>
             <div className="row">
-                {venues.map(venue => (
+                {filteredVenues.map(venue => (
                     <div className="col-12 col-sm-6 col-md-4 col-xl-3 d-flex align-items-center justify-content-center mb-3 " key={venue.id}>
+                        <Link  className="text-decoration-none" to={{ pathname: `/homepage/${venue.id}` }}>
                         <div>
                             {venue.media.length > 0 ? (
                                 <img className="img-fluid img-card object-fit-cover" src={venue.media[0].url} alt={venue.name}/>
                             ) : <div/>}
-                            <p className="text-left mt-2">{venue.name}</p>
+                            <p className="text-left mt-2 text-black">{venue.name}</p>
                         </div>
+
+                        </Link>
                     </div>
                 ))}
             </div>
         </div>
-
-
-
     )
 };
 

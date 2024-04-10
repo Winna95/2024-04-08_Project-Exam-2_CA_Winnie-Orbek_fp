@@ -1,6 +1,11 @@
 @import '../node_modules/bootstrap';
 @import 'Custom';
+@import 'variables.scss';
 
 .light-blue-bg {
-  background-color: #DBE4EA;
+  background-color: $primary;
+}
+
+.dark-blue-bg {
+  background-color: $secondary;
 }

@@ -81,17 +81,48 @@ export async function logInUser(email, password) {
   };
   const response = await fetch(url, fetchOptions);
 
-  const data = await response.json();
+  const responseData = await response.json();
+  const data = responseData.data
 
   if (
-    (data.statusCode && data.statusCode !== 200) ||
-    (data.errors && data.errors.length > 0)
+    (responseData.statusCode && responseData.statusCode !== 200) ||
+    (responseData.errors && responseData.errors.length > 0)
+  ) {
+    return false;
+  }
+  const jwt = data.accessToken;
+
+  const successfullyFetchedApiKey = await getApiToken(jwt)
+
+  localStorage.setItem('jwt', jwt);
+  localStorage.setItem('name', data.name);
+  return successfullyFetchedApiKey;
+}
+
+async function getApiToken(jwt) {
+  const url = baseUrl + '/auth/create-api-key';
+  const requestBody = {
+    name: "Holidaze API key"
+  }
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      'Content-type': "application/json",
+      'Authorization': "Bearer " + jwt
+    },
+    body: JSON.stringify(requestBody)
+  }
+  const response = await fetch(url, fetchOptions)
+  const responseData = await response.json();
+
+  if (
+      (responseData.statusCode && responseData.statusCode !== 201) ||
+      (responseData.errors && responseData.errors.length > 0)
   ) {
     return false;
   }
 
-  const jwt = data.accessToken;
-  localStorage.setItem('jwt', jwt);
-  localStorage.setItem('name', data.name);
+  const apiKey = responseData.data.key;
+  localStorage.setItem('apiKey', apiKey);
   return true;
 }

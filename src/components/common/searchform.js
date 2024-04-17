@@ -23,11 +23,11 @@ const SearchForm = () => {
                 }
                 const jsonResponse = await response.json();
                 const venues = jsonResponse.data;
+                console.log(venues);
                 setVenues(venues);
                 dispatch(setNewFilteredVenues(venues))
                 setLoading(false);
                 dispatch(setLoadingState(false));
-                console.log(jsonResponse)
             } catch (error) {
                 setError(error.message);
                 dispatch(setErrorLoading(error.message));

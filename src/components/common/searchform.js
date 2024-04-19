@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './SearchForm.scss';
-import {setErrorLoading, setLoadingState, setNewFilteredVenues} from "../venue/filteredVenueSlice";
+import {setErrorLoading, setLoadingState, setNewFilteredVenues} from "../redux/filteredVenueSlice";
 import {useDispatch} from "react-redux";
 
 

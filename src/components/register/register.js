@@ -5,6 +5,9 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import './register.scss'
 import {logInUser, registerNewUser} from "../../js/authentication-api";
 import {Link, useNavigate} from "react-router-dom";
+import {setLoadingState} from "../redux/filteredVenueSlice";
+import {setLoggedInState} from "../redux/loggedInSlice";
+import {useDispatch} from "react-redux";
 
 const schema = yup
     .object({
@@ -31,6 +34,7 @@ const RegisterForm = () => {
     const [errorMessage, setErrorMessage] = useState(null);
 
     const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const {
         register,
@@ -47,7 +51,7 @@ const RegisterForm = () => {
             const successfulLogIn = await logInUser(data.email, data.password);
             if(successfulLogIn === true) {
                 // Redirect to the venue page on successful login
-
+                dispatch(setLoggedInState(true));
                 navigate("/");
             } else {
                 setErrorMessage("Failed to log in")

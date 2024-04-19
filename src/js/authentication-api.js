@@ -1,3 +1,6 @@
+import {setLoadingState} from "../components/redux/filteredVenueSlice";
+import {setLoggedInState} from "../components/redux/loggedInSlice";
+
 const baseUrl = 'https://v2.api.noroff.dev';
 
 /**

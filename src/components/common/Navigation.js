@@ -1,16 +1,14 @@
-import {Link} from "react-router-dom";
+import NavigationNotLoggedIn from "./navigationNotLoggedIn";
+import {useSelector} from "react-redux";
+import NavigationLoggedIn from "./navigationLoggedIn";
+
 
 const Navigation = () => {
-
-
+    const loggedIn = useSelector((state) => state.loggedIn.value);
     return (
         <nav className="navbar navbar-expand">
             <div className="navbar-collapse justify-content-end">
-            <ul className="navbar-nav">
-                <li className="nav-item"><Link to="/" className="nav-link text-white">Home</Link></li>
-                <li className="nav-item"><Link to="/register" className="nav-link text-white">Register</Link></li>
-                <li className="nav-item"><Link to="/signin" className="nav-link text-white">Sign in</Link></li>
-            </ul>
+                { loggedIn ? <NavigationLoggedIn/> : <NavigationNotLoggedIn/>}
             </div>
         </nav>
     );

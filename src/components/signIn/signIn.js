@@ -4,6 +4,8 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from '@hookform/resolvers/yup';
 import {logInUser} from "../../js/authentication-api";
 import {useNavigate} from "react-router-dom";
+import {setLoggedInState} from "../redux/loggedInSlice";
+import {useDispatch} from "react-redux";
 
 const schema = yup
     .object({
@@ -22,6 +24,7 @@ const SignInForm = () => {
     const [errorMessage, setErrorMessage] = useState(null);
 
     const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const {
         register,
@@ -32,9 +35,9 @@ const SignInForm = () => {
     });
 
     async function onSubmit(data) {
-        console.log(data);
         const successfulLogIn = await logInUser(data.email, data.password);
         if(successfulLogIn === true) {
+            dispatch(setLoggedInState(true));
             // Redirect to the venue page on successful login
             navigate("/");
         } else {

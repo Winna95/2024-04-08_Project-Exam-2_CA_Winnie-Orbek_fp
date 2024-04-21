@@ -108,10 +108,9 @@ const IndividualVenue = () => {
         };
 
         fetchVenue();
-getMyProfile().then(myProfile => {
-    console.log(myProfile);
-    setIsVenueManager(myProfile.venueManager)
-});
+        getMyProfile()
+            .then(myProfile => setIsVenueManager(myProfile.venueManager))
+            .catch(error => setIsVenueManager(null));
     }, [venueId]);
 
     if (loading) {

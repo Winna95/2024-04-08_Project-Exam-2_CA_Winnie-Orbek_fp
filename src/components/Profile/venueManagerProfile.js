@@ -4,6 +4,7 @@ import {getMyBookings, getMyVenues} from "../../js/profile-api";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPen, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {deleteVenue} from "../../js/venue-api";
+import {useNavigate} from "react-router-dom";
 
 
 
@@ -13,6 +14,7 @@ const ProfileVenueManager = () => {
     const [myVenues, setMyVenues] = useState([])
     const [errorMessage, setErrorMessage] = useState(null)
 
+    const navigate = useNavigate()
     async function onClickDelete(venueId) {
         const list = await deleteVenue(venueId)
         if (list.length > 0) {
@@ -25,8 +27,12 @@ const ProfileVenueManager = () => {
     useEffect(() => {
 
         async function fetchMyVenues() {
-            const venues = await getMyVenues()
-            setMyVenues(venues)
+            try {
+                const venues = await getMyVenues()
+                setMyVenues(venues)
+            } catch (e) {
+                navigate("/")
+            }
         }
         fetchMyVenues();
     }, [])

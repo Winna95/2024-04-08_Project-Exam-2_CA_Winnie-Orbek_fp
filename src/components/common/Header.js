@@ -2,7 +2,9 @@ import Navigation from "./Navigation";
 import '../../App.scss'
 import Searchform from "./searchform";
 import {Link} from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 const Header = () => {
+    const location = useLocation();
     return (
         <header>
 
@@ -12,7 +14,8 @@ const Header = () => {
                 <h1 className="text-center">EXPLORE AND DISCOVER NEW PLACES</h1>
                 <h2 className="text-center">Find low prices on hotels, homes and much more...</h2>
                 <div>
-                <Searchform />
+                    {location.pathname === "/" ? <Searchform /> : <div/>}
+
                 </div>
             </div>
 

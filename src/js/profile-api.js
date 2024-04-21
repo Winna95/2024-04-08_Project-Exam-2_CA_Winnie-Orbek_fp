@@ -1,7 +1,9 @@
 const baseUrl = 'https://v2.api.noroff.dev';
 export async function getMyProfile () {
     const loggedInUserName = localStorage.getItem("name")
-    // TODO handle no loggedin username
+    if(!loggedInUserName) {
+        return Promise.reject("Operation failed due to user not having logged in")
+    }
     const url = baseUrl + `/holidaze/profiles/${loggedInUserName}`;
     const fetchOptions = {
         headers: {
@@ -16,7 +18,9 @@ export async function getMyProfile () {
 
 export async function getMyBookings () {
     const loggedInUserName = localStorage.getItem("name")
-    // TODO handle no loggedin username
+    if(!loggedInUserName) {
+        return Promise.reject("Operation failed due to user not having logged in")
+    }
     const url = baseUrl + `/holidaze/profiles/${loggedInUserName}/bookings?_venue=true`;
     const fetchOptions = {
         headers: {
@@ -30,7 +34,9 @@ export async function getMyBookings () {
 }
 export async function getMyVenues () {
     const loggedInUserName = localStorage.getItem("name")
-    // TODO handle no loggedin username
+    if(!loggedInUserName) {
+        return Promise.reject("Operation failed due to user not having logged in")
+    }
     const url = baseUrl + `/holidaze/profiles/${loggedInUserName}/venues`;
     const fetchOptions = {
         headers: {

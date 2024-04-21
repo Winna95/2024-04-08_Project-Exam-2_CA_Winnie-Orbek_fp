@@ -45,7 +45,6 @@ const SearchForm = () => {
 
         dispatch(setNewFilteredVenues(filtered))
 
-        //TODO, check if current route is homepage. If not, show dialog, before redirect to homepage.
     }
 
     if (loading) {

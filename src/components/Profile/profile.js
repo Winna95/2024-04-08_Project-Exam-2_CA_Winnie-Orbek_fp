@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {getMyProfile, updateAvatar} from "../../js/profile-api";
 import ProfileCustomer from "./customerProfile";
 import ProfileVenueManager from "./venueManagerProfile";
+import {useNavigate} from "react-router-dom";
 
 const Profile = () => {
 
@@ -10,6 +11,7 @@ const Profile = () => {
     const [newAvatarUrl, setNewAvatarUrl] = useState("");
     const [errorMessage, setErrorMessage] = useState(null)
 
+    const navigate = useNavigate()
     async function onClickUpdateAvatar () {
         const list = await updateAvatar(newAvatarUrl);
         if (list.length > 0) {
@@ -23,9 +25,13 @@ const Profile = () => {
 
 
         async function fetchMyProfile() {
-            const profile = await getMyProfile()
-            setIsVenueManager(profile.venueManager)
-            setAvatarUrl(profile.avatar.url)
+            try {
+                const profile = await getMyProfile()
+                setIsVenueManager(profile.venueManager)
+                setAvatarUrl(profile.avatar.url)
+            } catch (e) {
+                navigate("/signin")
+            }
         }
          fetchMyProfile();
      }, [])

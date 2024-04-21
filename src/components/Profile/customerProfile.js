@@ -1,15 +1,22 @@
 import {useEffect, useState} from "react";
 import {getMyBookings, getMyProfile} from "../../js/profile-api";
 import ProfileVenueManager from "./venueManagerProfile";
+import {useNavigate} from "react-router-dom";
 
 const ProfileCustomer = () => {
     const [myBookings, setMyBookings] = useState([])
+
+    const navigate = useNavigate()
     useEffect(() => {
 
 
         async function fetchMyBookings() {
-            const bookings = await getMyBookings()
-            setMyBookings(bookings)
+            try {
+                const bookings = await getMyBookings()
+                setMyBookings(bookings)
+            } catch (e) {
+                navigate("/signin")
+            }
         }
         fetchMyBookings();
     }, [])

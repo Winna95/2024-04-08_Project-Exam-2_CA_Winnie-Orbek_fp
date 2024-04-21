@@ -22,7 +22,7 @@ const Venues = () => {
             <div className="row">
                 {filteredVenues.map(venue => (
                     <div className="col-12 col-sm-6 col-md-4 col-xl-3 d-flex align-items-center justify-content-center mb-3 " key={venue.id}>
-                        <Link className="text-decoration-none" to={{ pathname: `/homepage/${venue.id}` }}>
+                        <Link className="text-decoration-none" to={{ pathname: `/venue/${venue.id}` }}>
                         <div>
                             {venue.media.length > 0 ? (
                                 <img className="img-fluid img-card object-fit-cover" src={venue.media[0].url} alt={venue.name}/>

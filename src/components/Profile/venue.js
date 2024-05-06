@@ -103,32 +103,32 @@ const Venue = (props) => {
     return (
         <div>
             <div className="container">
-                <form className="row mt-4 text-white fw-bolder" onSubmit={handleSubmit(onSubmit)}>
-                    <div className="col-10 col-md-8 col-lg-6 mx-auto px-4 py-5 mt-n2 mb-5 dark-blue-bg rounded">
+                <form className="row mt-4 fw-medium" onSubmit={handleSubmit(onSubmit)}>
+                    <div className="col-10 col-md-8 col-lg-6 mx-auto px-4 py-5 mt-n2 mb-5 form-bg rounded-0 shadow">
                         <h5 className="text-center fw-bolder">{isCreateMode ? "Create venue" : "Update venue"}</h5>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="name" className="form-label mb-2 fw-normal">Venue name:</label>
-                            <input {...register('name')} className="form-control"/>
+                            <input {...register('name')} className="form-control rounded-0 shadow"/>
                             <p>{errors.name?.message}</p>
                         </div>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="description" className="form-label mb-2 fw-normal">Description:</label>
-                            <input {...register('description')} className="form-control"/>
+                            <input {...register('description')} className="form-control rounded-0 shadow"/>
                             <p>{errors.description?.message}</p>
                         </div>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="mediaUrl" className="form-label mb-2 fw-normal">MediaUrl:</label>
-                            <input {...register('mediaUrl')} className="form-control"/>
+                            <input {...register('mediaUrl')} className="form-control rounded-0 shadow"/>
                             <p>{errors.mediaUrl?.message}</p>
                         </div>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="price" className="form-label mb-2 fw-normal">Price:</label>
-                            <input {...register('price')} defaultValue={1} className="form-control"/>
+                            <input {...register('price')} defaultValue={1} className="form-control rounded-0 shadow"/>
                             <p>{errors.price?.message}</p>
                         </div>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="maxGuests" className="form-label mb-2 fw-normal">Max Guest:</label>
-                            <input {...register('maxGuests')} defaultValue={1} className="form-control"/>
+                            <input {...register('maxGuests')} defaultValue={1} className="form-control rounded-0 shadow"/>
                             <p>{errors.maxGuests?.message}</p>
                         </div>
                         <div className="mb-3 col-8 mx-auto">
@@ -157,42 +157,42 @@ const Venue = (props) => {
                         </div>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="address" className="form-label mb-2 fw-normal">Address:</label>
-                            <input {...register('address')} className="form-control"/>
+                            <input {...register('address')} className="form-control rounded-0 shadow"/>
                             <p>{errors.address?.message}</p>
                         </div>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="city" className="form-label mb-2 fw-normal">City:</label>
-                            <input {...register('city')} className="form-control"/>
+                            <input {...register('city')} className="form-control rounded-0 shadow"/>
                             <p>{errors.city?.message}</p>
                         </div>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="zip" className="form-label mb-2 fw-normal">Zip:</label>
-                            <input {...register('zip')} className="form-control"/>
+                            <input {...register('zip')} className="form-control rounded-0 shadow"/>
                             <p>{errors.zip?.message}</p>
                         </div>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="country" className="form-label mb-2 fw-normal">Country:</label>
-                            <input {...register('country')} className="form-control"/>
+                            <input {...register('country')} className="form-control rounded-0 shadow"/>
                             <p>{errors.country?.message}</p>
                         </div>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="continent" className="form-label mb-2 fw-normal">Continent:</label>
-                            <input {...register('continent')} className="form-control"/>
+                            <input {...register('continent')} className="form-control rounded-0 shadow"/>
                             <p>{errors.continent?.message}</p>
                         </div>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="lat" className="form-label mb-2 fw-normal">Latitude:</label>
-                            <input {...register('lat')} defaultValue={0} className="form-control"/>
+                            <input {...register('lat')} defaultValue={0} className="form-control rounded-0 shadow"/>
                             <p>{errors.lat?.message}</p>
                         </div>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="lng" className="form-label mb-2 fw-normal">Longitude:</label>
-                            <input {...register('lng')} defaultValue={0} className="form-control"/>
+                            <input {...register('lng')} defaultValue={0} className="form-control rounded-0 shadow"/>
                             <p>{errors.lng?.message}</p>
                         </div>
                         {!!errorMessage ? errorMessage : <div/>}
                         <div className="text-center">
-                            <button type="submit" className="btn-blue border-0 text-white px-4 py-1 rounded">Submit
+                            <button type="submit" className="btn-blue border-0 fw-medium text-white px-5 py-2 rounded-0">Submit
                             </button>
                         </div>
                     </div>

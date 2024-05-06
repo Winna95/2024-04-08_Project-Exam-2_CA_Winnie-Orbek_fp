@@ -3,6 +3,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import Calendar from "react-calendar";
 import "./customCalender.scss";
+import "./venueIndividualPage.scss"
 import {createBooking} from "../../js/booking-api";
 import {getMyProfile} from "../../js/profile-api";
 
@@ -118,7 +119,7 @@ const IndividualVenue = () => {
     }
 
     if (error) {
-        return <div>Error: {error}</div>;
+        return <div className="error">Error: {error}</div>;
     }
     const customTileClass = ({ date, view }) => {
         if (selectedDates.some((selectedDate) => date.toDateString() === selectedDate.toDateString())) {
@@ -145,72 +146,84 @@ const IndividualVenue = () => {
     }
 
     return (
-        <div className="container">
+        <div className="container container-induvidualVenue">
             <div className="row">
-                <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center mb-3">
+                <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center align-items-md-start justify-content-md-start mb-3 mt-md-3">
                     <h1>{venue.name}</h1>
                     <div>
                         <p>{venue.description}</p>
                         <p>Price: {venue.price}$</p>
                         <p>Rating: {venue.rating}</p>
-
-
                     </div>
                 </div>
-                <div className="col-12 col-md-6 d-flex align-items-center justify-content-center mb-3">
-                        <div className="mb-3 mt-md-3">
-                            <img className="img-fluid object-fit-cover" src={venue.media[0].url} alt={venue.name} />
-                        </div>
+                <div className="col-12 col-md-6 d-flex align-items-center justify-content-center mb-3 mt-md-5">
+                    <div className="mb-3 mt-md-3">
+                        <img className="img-fluid object-fit-cover" src={venue.media[0].url} alt={venue.name} />
+                    </div>
                 </div>
-                <div>
-                    <b>Information:</b>
+                <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center align-items-md-start justify-content-md-start mb-3">
                     <div>
-                        <p>Max guests: {venue.maxGuests}</p>
-                        <p>Wifi: {venue.meta.wifi ? <span>Yes</span> : <span>No</span>}</p>
-                        <p>Parking: {venue.meta.parking ? <span>Yes</span> : <span>No</span>}</p>
-                        <p>pets: {venue.meta.pets ? <span>Yes</span> : <span>No</span>}</p>
+                        <b>Information:</b>
+                        <div>
+                            <p>Max guests: {venue.maxGuests}</p>
+                            <p>Wifi: {venue.meta.wifi ? <span>Yes</span> : <span>No</span>}</p>
+                            <p>Parking: {venue.meta.parking ? <span>Yes</span> : <span>No</span>}</p>
+                            <p>Pets: {venue.meta.pets ? <span>Yes</span> : <span>No</span>}</p>
+                        </div>
                     </div>
+                </div>
+                <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center mb-3">
                     <div>
                         <b>Location:</b>
-                        <p>{venue.location.address}</p>
-                        <p>{venue.location.zip} {venue.location.city}</p>
-                        <p>{venue.location.country}</p>
+                        <div>
+                            <p>{venue.location.address}</p>
+                            <p>{venue.location.zip} {venue.location.city}</p>
+                            <p>{venue.location.country}</p>
+                        </div>
                     </div>
-
                 </div>
-                <h5>Available dates:</h5>
-
-                <label>Number of Guests:</label>
-                <div className="col-2">
-                <input
-                type="number"
-                className="form-control"
-                value={guestCount}
-                onChange={(event) => setGuestCount(parseInt(event.target.value))}
-                min={1}
-                max={venue.maxGuests}/>
+                <div className="col-12">
+                    <h5>Available dates:</h5>
                 </div>
-                <Calendar
-                    onChange={storePickedDate} value={selectedDates}
-                    onClickDay={onClickDay}
-                    selectRange={true}
-                    tileDisabled={({date}) => {
-                        return disabledDates.includes(date.toDateString());
-                    } }
-                    minDate={new Date()}
-                    tileClassName={customTileClass}
-                />
-                {isVenueManager === false ?
-                <div className="mx-auto text-center mb-5 btn-blue col-2">
-                    <button onClick={submitBooking} className="btn text-white fw-bolder">Book</button>
-                </div> : <div></div>}
-                {newBookingError ? <span>{newBookingError}</span> : <span></span>}
+                <div className="col-12 mb-3">
+                    <label>Number of Guests:</label>
+                    <div className="col-2">
+                        <input
+                            type="number"
+                            className="form-control rounded-0 shadow"
+                            value={guestCount}
+                            onChange={(event) => setGuestCount(parseInt(event.target.value))}
+                            min={1}
+                            max={venue.maxGuests}
+                        />
+                    </div>
+                </div>
+                <div className="col-12 mb-3">
+                    <Calendar
+                        onChange={storePickedDate}
+                        value={selectedDates}
+                        onClickDay={onClickDay}
+                        selectRange={true}
+                        tileDisabled={({ date }) => {
+                            return disabledDates.includes(date.toDateString());
+                        }}
+                        minDate={new Date()}
+                        tileClassName={customTileClass}
+                        className="react-calendar bg-white"
+
+
+                    />
+                    {isVenueManager === false ? (
+                        <div className="mx-auto text-center mb-5 btn-blue col-2 mt-2">
+                            <button onClick={submitBooking} className="btn text-white fw-medium rounded-0 py-2">Book</button>
+                        </div>
+                    ) : (
+                        <div></div>
+                    )}
+                    <div className="error">{newBookingError ? <span>{newBookingError}</span> : <span></span>}</div>
+                </div>
             </div>
         </div>
-
-
-
-
     );
 }
 

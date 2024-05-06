@@ -28,3 +28,23 @@ export async function createBooking(dateFrom, dateTo, guests, venueId) {
 
     return [];
 }
+
+export async function deleteBooking (bookingId) {
+    const url = baseUrl + `/holidaze/bookings/${bookingId}`
+
+    const fetchOptions = {
+        method: "DELETE",
+        headers: {
+            'Authorization': "Bearer " + localStorage.getItem("jwt"),
+            'X-Noroff-API-Key': localStorage.getItem("apiKey")
+        }
+    }
+    const response = await fetch(url, fetchOptions)
+
+    if (response.status && response.status === 204) {
+        return[]
+
+    } else {
+        return ["Failed to delete booking"];
+    }
+}

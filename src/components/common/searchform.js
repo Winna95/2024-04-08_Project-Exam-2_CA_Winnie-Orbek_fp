@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './SearchForm.scss';
 import {setErrorLoading, setLoadingState, setNewFilteredVenues} from "../redux/filteredVenueSlice";
 import {useDispatch} from "react-redux";
+import "./global.scss"
 
 
 const SearchForm = () => {
@@ -64,11 +65,11 @@ const SearchForm = () => {
                                 placeholder="Search"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="form-control text-dark custom-input"
+                                className="form-control text-dark custom-input shadow rounded-0"
                             />
                         </div>
-                        <div className="col-auto btn-blue rounded ms-2">
-                            <button onClick={handleSearch} className=" text-white btn">Search</button>
+                        <div className="col-auto btn-blue ms-2">
+                            <button onClick={handleSearch} className=" text-white btn fw-medium rounded-0">Search</button>
                         </div>
             </div>
         </div>

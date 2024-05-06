@@ -37,7 +37,7 @@ export async function getMyVenues () {
     if(!loggedInUserName) {
         return Promise.reject("Operation failed due to user not having logged in")
     }
-    const url = baseUrl + `/holidaze/profiles/${loggedInUserName}/venues`;
+    const url = baseUrl + `/holidaze/profiles/${loggedInUserName}/venues?_bookings=true`;
     const fetchOptions = {
         headers: {
             'Authorization': "Bearer " + localStorage.getItem("jwt"),

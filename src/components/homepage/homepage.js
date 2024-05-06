@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import './homepage.scss'
+import '../common/global.scss'
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 
@@ -13,7 +13,7 @@ const Venues = () => {
     }
 
     if (error) {
-        return <div>Error: {error}</div>;
+        return <div className="error">Error: {error}</div>;
     }
 
     return (
@@ -22,15 +22,19 @@ const Venues = () => {
             <div className="row">
                 {filteredVenues.map(venue => (
                     <div className="col-12 col-sm-6 col-md-4 col-xl-3 d-flex align-items-center justify-content-center mb-3 " key={venue.id}>
-                        <Link className="text-decoration-none" to={{ pathname: `/venue/${venue.id}` }}>
+                        <div className="card h-100 mx-auto d-flex flex-column shadow rounded-0">
+                        <Link className="text-decoration-none hover-transform" to={{ pathname: `/venue/${venue.id}` }}>
                         <div>
                             {venue.media.length > 0 ? (
-                                <img className="img-fluid img-card object-fit-cover" src={venue.media[0].url} alt={venue.name}/>
+                                <img className="card-img-top object-fit-cover rounded-0" src={venue.media[0].url} alt={venue.name}/>
                             ) : <div/>}
-                            <p className="text-left mt-2 text-black">{venue.name}</p>
+                            <div className="card-body d-flex flex-column">
+                            <p className="text-center text-black card-title">{venue.name}</p>
+                            </div>
                         </div>
 
                         </Link>
+                        </div>
                     </div>
                 ))}
             </div>

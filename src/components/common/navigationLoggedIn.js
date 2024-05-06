@@ -15,9 +15,9 @@ const NavigationLoggedIn = () => {
     }
     return (
         <ul className="navbar-nav">
-            <li className="nav-item"><Link to="/" className="nav-link text-white">Home</Link></li>
-            <li className="nav-item"><Link to="/profile" className="nav-link text-white">Profile</Link></li>
-            <li className="nav-item"><button onClick={() => onClickSignOut()} className="nav-link text-white">Sign out</button></li>
+            <li className="nav-item hover-links"><Link to="/" className="nav-link text-white">Home</Link></li>
+            <li className="nav-item hover-links"><Link to="/profile" className="nav-link text-white">Profile</Link></li>
+            <li className="nav-item hover-links"><button onClick={() => onClickSignOut()} className="nav-link text-white">Sign out</button></li>
         </ul>
 
     )

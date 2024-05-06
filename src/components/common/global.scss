@@ -9,3 +9,50 @@ body {
 h1 {
   font-weight: bold;
 }
+
+.error {
+  color: red;
+}
+.container .img-fluid {
+  max-width: none;
+  width: 200px;
+  height: 200px;
+}
+
+.hover-transform:hover {
+  opacity: 0.5;
+  transform: scale(1.1);
+}
+.btn-blue:hover {
+  opacity: 0.5;
+  transform: scale(1.1);
+}
+
+.hover-links:hover {
+  opacity: 0.5;
+}
+
+@media screen and (min-width: 576px) {
+  .container .img-fluid {
+    width: 250px;
+    height: 250px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container .img-fluid {
+    width: 220px;
+    height: 220px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .container .img-fluid {
+    width: 300px;
+    height: 300px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .container .img-fluid {
+    width: 250px;
+    height: 250px;
+  }
+}

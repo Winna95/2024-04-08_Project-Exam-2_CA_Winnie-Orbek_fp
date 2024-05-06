@@ -10,22 +10,40 @@ import {getMyProfile} from "../../js/profile-api";
 
 const baseUrl = 'https://v2.api.noroff.dev';
 
+/**
+ * Adds specified number of days to a given date.
+ * @param {Date} inputDate - The input date.
+ * @param {number} days - The number of days to add.
+ * @returns {Date} - The new date after adding the specified days.
+ */
 function addDays(inputDate, days) {
     let date = new Date(inputDate.valueOf());
     date.setDate(date.getDate() + days);
     return date;
 }
 
+/**
+ * Retrieves an array of dates between the given start and stop dates.
+ * @param {Date} startDate - The start date.
+ * @param {Date} stopDate - The stop date.
+ * @returns {Date[]} - An array of dates between the start and stop dates.
+ */
 function getDates(startDate, stopDate) {
     let dateArray = [];
     let currentDate = startDate;
     while (currentDate <= stopDate) {
-        dateArray.push(new Date (currentDate));
+        dateArray.push(new Date(currentDate));
         currentDate = addDays(currentDate, 1);
     }
     return dateArray;
 }
 
+/**
+ * Resolves unselectable dates for a venue based on existing bookings and maximum guest count.
+ * @param {Object[]} bookings - Array of bookings for the venue.
+ * @param {number} maxGuestCountForVenue - Maximum guest count allowed for the venue.
+ * @returns {Date[]} - Array of unselectable dates.
+ */
 function resolveUnselectableDatesForVenue(bookings, maxGuestCountForVenue) {
     const bookedDatesWithGuestCount = bookings.map(booking => {
         const fromDate = new Date(booking.dateFrom);
@@ -41,16 +59,16 @@ function resolveUnselectableDatesForVenue(bookings, maxGuestCountForVenue) {
     })
         .flat()
         .reduce((accumulator, currentValue) => {
-        const key = currentValue.date.getTime();
-        if (accumulator.has(key)) {
-            const existingGuestCount = accumulator.get(key);
-            const newGuestCount = existingGuestCount + currentValue.guestCount;
-            accumulator.set(key, newGuestCount)
-        } else {
-            accumulator.set(key, currentValue.guestCount)
-        }
-        return accumulator;
-    }, new Map());
+            const key = currentValue.date.getTime();
+            if (accumulator.has(key)) {
+                const existingGuestCount = accumulator.get(key);
+                const newGuestCount = existingGuestCount + currentValue.guestCount;
+                accumulator.set(key, newGuestCount)
+            } else {
+                accumulator.set(key, currentValue.guestCount)
+            }
+            return accumulator;
+        }, new Map());
 
 
     return Array.from(bookedDatesWithGuestCount.entries()).filter(entry => {
@@ -60,6 +78,10 @@ function resolveUnselectableDatesForVenue(bookings, maxGuestCountForVenue) {
     }).map(entry => new Date(entry[0]))
 }
 
+/**
+ * IndividualVenue component renders information about a specific venue.
+ * @returns {JSX.Element} - JSX element containing information about the venue.
+ */
 const IndividualVenue = () => {
     const [venue, setVenue] = useState({});
     const [loading, setLoading] = useState(true);
@@ -79,12 +101,10 @@ const IndividualVenue = () => {
         setSelectedDates(value);
     }
     const onClickDay = (value, event) => {
-        // We use a range from the calendar being represented as an array with two dates.
         if (selectedDates.length === 2) {
             setSelectedDates([])
         }
     }
-
 
 
     useEffect(() => {
@@ -99,7 +119,7 @@ const IndividualVenue = () => {
                 setVenue(responseVenue);
                 setDisabledDates(
                     resolveUnselectableDatesForVenue(responseVenue.bookings, responseVenue.maxGuests)
-                    .map(date => date.toDateString())
+                        .map(date => date.toDateString())
                 );
                 setLoading(false);
             } catch (error) {
@@ -121,7 +141,7 @@ const IndividualVenue = () => {
     if (error) {
         return <div className="error">Error: {error}</div>;
     }
-    const customTileClass = ({ date, view }) => {
+    const customTileClass = ({date, view}) => {
         if (selectedDates.some((selectedDate) => date.toDateString() === selectedDate.toDateString())) {
             return 'selected-date';
         }
@@ -131,6 +151,8 @@ const IndividualVenue = () => {
             date < Math.max(...selectedDates)
         ) {
             return 'between-dates';
+        } else {
+            return 'white-bg'
         }
     };
 
@@ -146,9 +168,10 @@ const IndividualVenue = () => {
     }
 
     return (
-        <div className="container container-induvidualVenue">
+        <div className="container container-individualVenue">
             <div className="row">
-                <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center align-items-md-start justify-content-md-start mb-3 mt-md-3">
+                <div
+                    className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center align-items-md-start justify-content-md-start mb-3 mt-md-3">
                     <h1>{venue.name}</h1>
                     <div>
                         <p>{venue.description}</p>
@@ -158,10 +181,11 @@ const IndividualVenue = () => {
                 </div>
                 <div className="col-12 col-md-6 d-flex align-items-center justify-content-center mb-3 mt-md-5">
                     <div className="mb-3 mt-md-3">
-                        <img className="img-fluid object-fit-cover" src={venue.media[0].url} alt={venue.name} />
+                        <img className="img-fluid object-fit-cover" src={venue.media[0].url} alt={venue.name}/>
                     </div>
                 </div>
-                <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center align-items-md-start justify-content-md-start mb-3">
+                <div
+                    className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center align-items-md-start justify-content-md-start mb-3">
                     <div>
                         <b>Information:</b>
                         <div>
@@ -204,7 +228,7 @@ const IndividualVenue = () => {
                         value={selectedDates}
                         onClickDay={onClickDay}
                         selectRange={true}
-                        tileDisabled={({ date }) => {
+                        tileDisabled={({date}) => {
                             return disabledDates.includes(date.toDateString());
                         }}
                         minDate={new Date()}
@@ -215,7 +239,8 @@ const IndividualVenue = () => {
                     />
                     {isVenueManager === false ? (
                         <div className="mx-auto text-center mb-5 btn-blue col-2 mt-2">
-                            <button onClick={submitBooking} className="btn text-white fw-medium rounded-0 py-2">Book</button>
+                            <button onClick={submitBooking} className="btn text-white fw-medium rounded-0 py-2">Book
+                            </button>
                         </div>
                     ) : (
                         <div></div>

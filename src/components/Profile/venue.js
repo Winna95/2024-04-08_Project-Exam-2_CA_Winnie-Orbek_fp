@@ -4,6 +4,14 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {useForm} from "react-hook-form";
 import {createVenue, updateVenue} from "../../js/venue-api";
 
+/**
+ * Venue component for the Holidaze Booking application.
+ * This component renders a form for creating or updating a venue, with validation using Yup.
+ * @param {Object} props - Component props.
+ * @param {boolean} props.createMode - Flag indicating whether the component is in create mode.
+ * @param {Object} props.venue - Venue data if in update mode.
+ * @returns {JSX.Element} The rendered venue form component.
+ */
 const schema = yup
     .object({
         name: yup
@@ -58,11 +66,11 @@ const Venue = (props) => {
         register,
         handleSubmit,
         setValue,
-        formState: { errors }
+        formState: {errors}
     } = useForm({resolver: yupResolver(schema)});
 
     useEffect(() => {
-        if(!isCreateMode) {
+        if (!isCreateMode) {
             populateForm(venue)
         }
     }, []);
@@ -92,7 +100,7 @@ const Venue = (props) => {
             :
             await updateVenue(data.name, data.description, data.mediaUrl, data.price, data.maxGuests, data.wifi, data.parking, data.breakfast, data.pets, data.address, data.city, data.zip, data.country, data.continent, data.lat, data.lng, venue.id)
         ;
-        if(errors.length < 1) {
+        if (errors.length < 1) {
             window.location.reload()
         } else {
             setErrorMessage("Failed to save venue, due to: " + errors.join(", "))
@@ -128,7 +136,8 @@ const Venue = (props) => {
                         </div>
                         <div className="mb-3 col-8 mx-auto">
                             <label htmlFor="maxGuests" className="form-label mb-2 fw-normal">Max Guest:</label>
-                            <input {...register('maxGuests')} defaultValue={1} className="form-control rounded-0 shadow"/>
+                            <input {...register('maxGuests')} defaultValue={1}
+                                   className="form-control rounded-0 shadow"/>
                             <p>{errors.maxGuests?.message}</p>
                         </div>
                         <div className="mb-3 col-8 mx-auto">
@@ -192,7 +201,8 @@ const Venue = (props) => {
                         </div>
                         {!!errorMessage ? errorMessage : <div/>}
                         <div className="text-center">
-                            <button type="submit" className="btn-blue border-0 fw-medium text-white px-5 py-2 rounded-0">Submit
+                            <button type="submit"
+                                    className="btn-blue border-0 fw-medium text-white px-5 py-2 rounded-0">Submit
                             </button>
                         </div>
                     </div>

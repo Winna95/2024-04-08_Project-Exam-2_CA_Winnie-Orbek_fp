@@ -1,11 +1,17 @@
+
 .selected-date {
-  background-color: green;
+  background-color: #7A9768;
   color: white;
+
 }
 
 .between-dates {
-  background-color: green;
+  background-color: #7A9768;
   color: white;
+}
+
+.white-bg {
+  background-color: white;
 }
 
 .react-calendar {
@@ -17,7 +23,6 @@
 
 .react-calendar__tile {
   border: none;
-  background-color: white;
   padding-bottom: 10px;
 }
 

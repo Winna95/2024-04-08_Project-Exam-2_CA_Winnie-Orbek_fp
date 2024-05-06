@@ -1,7 +1,13 @@
 const baseUrl = 'https://v2.api.noroff.dev';
-export async function getMyProfile () {
+
+/**
+ * Retrieves the profile information of the currently logged-in user.
+ * @returns {Promise<Object>} - A promise resolving to an object containing the profile data of the user.
+ * @throws {string} - Throws an error if the user is not logged in.
+ */
+export async function getMyProfile() {
     const loggedInUserName = localStorage.getItem("name")
-    if(!loggedInUserName) {
+    if (!loggedInUserName) {
         return Promise.reject("Operation failed due to user not having logged in")
     }
     const url = baseUrl + `/holidaze/profiles/${loggedInUserName}`;
@@ -16,9 +22,14 @@ export async function getMyProfile () {
     return responseData.data
 }
 
-export async function getMyBookings () {
+/**
+ * Retrieves the bookings associated with the currently logged-in user.
+ * @returns {Promise<Object[]>} - A promise resolving to an array containing the bookings data of the user.
+ * @throws {string} - Throws an error if the user is not logged in.
+ */
+export async function getMyBookings() {
     const loggedInUserName = localStorage.getItem("name")
-    if(!loggedInUserName) {
+    if (!loggedInUserName) {
         return Promise.reject("Operation failed due to user not having logged in")
     }
     const url = baseUrl + `/holidaze/profiles/${loggedInUserName}/bookings?_venue=true`;
@@ -32,9 +43,15 @@ export async function getMyBookings () {
     const responseData = await response.json()
     return responseData.data
 }
-export async function getMyVenues () {
+
+/**
+ * Retrieves the venues associated with the currently logged-in user.
+ * @returns {Promise<Object[]>} - A promise resolving to an array containing the venues data of the user.
+ * @throws {string} - Throws an error if the user is not logged in.
+ */
+export async function getMyVenues() {
     const loggedInUserName = localStorage.getItem("name")
-    if(!loggedInUserName) {
+    if (!loggedInUserName) {
         return Promise.reject("Operation failed due to user not having logged in")
     }
     const url = baseUrl + `/holidaze/profiles/${loggedInUserName}/venues?_bookings=true`;
@@ -49,7 +66,12 @@ export async function getMyVenues () {
     return responseData.data
 }
 
-export async function updateAvatar (avatarUrl) {
+/**
+ * Updates the avatar of the currently logged-in user.
+ * @param {string} avatarUrl - The URL of the new avatar image.
+ * @returns {Promise<string[]>} - A promise resolving to an array containing error messages, if any, encountered during the update process.
+ */
+export async function updateAvatar(avatarUrl) {
     const loggedInUserName = localStorage.getItem("name")
     const url = baseUrl + `/holidaze/profiles/${loggedInUserName}`
 

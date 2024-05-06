@@ -1,6 +1,3 @@
-import {setLoadingState} from "../components/redux/filteredVenueSlice";
-import {setLoggedInState} from "../components/redux/loggedInSlice";
-
 const baseUrl = 'https://v2.api.noroff.dev';
 
 /**
@@ -31,7 +28,7 @@ export async function registerNewUser(name, email, password, avatarImgUrl, venue
     password: password,
     venueManager: venueManager
   };
-  if( avatarImgUrl) {
+  if (avatarImgUrl) {
     requestBody.avatar = {
       url: avatarImgUrl
     }
@@ -39,7 +36,7 @@ export async function registerNewUser(name, email, password, avatarImgUrl, venue
   const url = baseUrl + '/auth/register';
   const fetchOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(requestBody),
   };
   try {
@@ -79,7 +76,7 @@ export async function logInUser(email, password) {
   const url = baseUrl + '/auth/login';
   const fetchOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(requestBody),
   };
   const response = await fetch(url, fetchOptions);
@@ -88,8 +85,8 @@ export async function logInUser(email, password) {
   const data = responseData.data
 
   if (
-    (responseData.statusCode && responseData.statusCode !== 200) ||
-    (responseData.errors && responseData.errors.length > 0)
+      (responseData.statusCode && responseData.statusCode !== 200) ||
+      (responseData.errors && responseData.errors.length > 0)
   ) {
     return false;
   }
@@ -102,6 +99,11 @@ export async function logInUser(email, password) {
   return successfullyFetchedApiKey;
 }
 
+/**
+ * Requests an API token using the provided JWT token.
+ * @param {string} jwt - JWT token used for authentication.
+ * @returns {Promise<boolean>} - A promise resolving to a boolean indicating success or failure of the API token retrieval.
+ */
 async function getApiToken(jwt) {
   const url = baseUrl + '/auth/create-api-key';
   const requestBody = {

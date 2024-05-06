@@ -7,6 +7,16 @@ import {Link, useNavigate} from "react-router-dom";
 import {setLoggedInState} from "../redux/loggedInSlice";
 import {useDispatch} from "react-redux";
 
+/**
+ * @typedef {Object} SignInData - Data structure for sign-in form inputs.
+ * @property {string} email - User's email address.
+ * @property {string} password - User's password.
+ */
+
+/**
+ * SignInForm component renders a sign-in form.
+ * @returns {JSX.Element} JSX element containing the sign-in form.
+ */
 const schema = yup
     .object({
         email: yup
@@ -26,6 +36,10 @@ const SignInForm = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
 
+    /**
+     * React Hook Form configuration.
+     * @type {import('react-hook-form').UseFormReturn<SignInData>}
+     */
     const {
         register,
         handleSubmit,
@@ -34,9 +48,14 @@ const SignInForm = () => {
         resolver: yupResolver(schema),
     });
 
+    /**
+     * Handles form submission.
+     * @param {SignInData} data - Form data containing email and password.
+     * @returns {Promise<void>} Promise indicating success or failure of form submission.
+     */
     async function onSubmit(data) {
         const successfulLogIn = await logInUser(data.email, data.password);
-        if(successfulLogIn === true) {
+        if (successfulLogIn === true) {
             dispatch(setLoggedInState(true));
             // Redirect to the venue page on successful login
             navigate("/");
@@ -63,7 +82,8 @@ const SignInForm = () => {
                         </div>
                         <div className="error">{!!errorMessage ? errorMessage : <div/>}</div>
                         <div className="text-left ms-5 mt-4">
-                            <button type="submit" className="btn-blue border-0 text-white px-5 py-1 rounded-0 fw-medium">Sign in
+                            <button type="submit"
+                                    className="btn-blue border-0 text-white px-5 py-1 rounded-0 fw-medium">Sign in
                             </button>
                         </div>
                         <div className="ms-5 mt-5">

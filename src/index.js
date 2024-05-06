@@ -10,11 +10,15 @@ import './components/common/global.scss'
 import {store} from "./config/store";
 import {Provider} from "react-redux";
 
+/**
+ * Creates a root React DOM container and renders the application.
+ * @param {HTMLElement} rootElement - The root element in the HTML document where the application will be rendered.
+ */
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Provider store={store} >
+    <Provider store={store}>
         <BrowserRouter>
-            <App />
+            <App/>
         </BrowserRouter>
     </Provider>
 );

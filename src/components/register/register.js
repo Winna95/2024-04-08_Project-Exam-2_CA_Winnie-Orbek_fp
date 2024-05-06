@@ -5,10 +5,13 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import './register.scss'
 import {logInUser, registerNewUser} from "../../js/authentication-api";
 import {Link, useNavigate} from "react-router-dom";
-import {setLoadingState} from "../redux/filteredVenueSlice";
 import {setLoggedInState} from "../redux/loggedInSlice";
 import {useDispatch} from "react-redux";
 
+/**
+ * Validation schema for the registration form.
+ * @type {yup.ObjectSchema}
+ */
 const schema = yup
     .object({
         name: yup
@@ -30,6 +33,10 @@ const schema = yup
     })
     .required();
 
+/**
+ * Component for the registration form.
+ * @returns {JSX.Element}
+ */
 const RegisterForm = () => {
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -44,13 +51,16 @@ const RegisterForm = () => {
         resolver: yupResolver(schema),
     });
 
+    /**
+     * Handles form submission.
+     * @param {Object} data - Form data.
+     */
     async function onSubmit(data) {
         console.log(data);
         const registrationErrors = await registerNewUser(data.name, data.email, data.password, data.avatar, data.venueManager);
-        if(registrationErrors.length < 1) {
+        if (registrationErrors.length < 1) {
             const successfulLogIn = await logInUser(data.email, data.password);
-            if(successfulLogIn === true) {
-                // Redirect to the venue page on successful login
+            if (successfulLogIn === true) {
                 dispatch(setLoggedInState(true));
                 navigate("/");
             } else {
@@ -89,13 +99,15 @@ const RegisterForm = () => {
                         </div>
                         <div className="mb-3 col-10 mx-auto">
                             <label htmlFor="customerManager" className="form-label mb-2 fw-normal">Is manager(else is
-                                customer):</label>
+                                customer):
+                            </label>
                             <input type={"checkbox"} {...register('venueManager')} defaultChecked={true}
                                    className="form-check-input"/>
                         </div>
                         <div className="error">{!!errorMessage ? errorMessage : <div/>}</div>
                         <div className="text-left ms-5">
-                            <button type="submit" className="btn-blue border-0 text-white px-5 py-2 fw-medium rounded-0">Register
+                            <button type="submit"
+                                    className="btn-blue border-0 text-white px-5 py-2 fw-medium rounded-0">Register
                             </button>
                         </div>
                         <div className="ms-5 mt-5">

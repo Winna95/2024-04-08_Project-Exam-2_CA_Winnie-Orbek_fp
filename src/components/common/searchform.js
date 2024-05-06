@@ -4,7 +4,11 @@ import {setErrorLoading, setLoadingState, setNewFilteredVenues} from "../redux/f
 import {useDispatch} from "react-redux";
 import "./global.scss"
 
-
+/**
+ * SearchForm component for the Holidaze Booking application.
+ * This component renders a search input field and button to search for venues.
+ * @returns {JSX.Element} The rendered search form component.
+ */
 const SearchForm = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [venues, setVenues] = useState([]);
@@ -39,6 +43,10 @@ const SearchForm = () => {
         fetchVenues();
     }, []);
 
+    /**
+     * Function to handle the search action.
+     * Filters the venues based on the search term and updates the filtered venues.
+     */
     const handleSearch = () => {
 
         const filtered = venues
@@ -59,18 +67,18 @@ const SearchForm = () => {
     return (
         <div className="container mt-5">
             <div className="row justify-content-center">
-                        <div className="col-12 col-md-6 col-lg mb-3 mb-md-0">
-                            <input
-                                type="text"
-                                placeholder="Search"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="form-control text-dark custom-input shadow rounded-0"
-                            />
-                        </div>
-                        <div className="col-auto btn-blue ms-2">
-                            <button onClick={handleSearch} className=" text-white btn fw-medium rounded-0">Search</button>
-                        </div>
+                <div className="col-12 col-md-6 col-lg mb-3 mb-md-0">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="form-control text-dark custom-input shadow rounded-0"
+                    />
+                </div>
+                <div className="col-auto btn-blue ms-2">
+                    <button onClick={handleSearch} className=" text-white btn fw-medium rounded-0">Search</button>
+                </div>
             </div>
         </div>
     );

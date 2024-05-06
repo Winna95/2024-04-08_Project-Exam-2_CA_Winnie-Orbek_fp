@@ -82,7 +82,7 @@ const ProfileVenueManager = () => {
         }
 
         fetchMyVenues();
-    }, [])
+    }, [navigate])
     return (
         <div className="container">
             <h3 className="text-center mb-5">My venues:</h3>

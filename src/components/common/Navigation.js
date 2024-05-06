@@ -22,7 +22,7 @@ const Navigation = () => {
         if (name && jwt && apiKey) {
             dispatch(setLoggedInState(true));
         }
-    }, []);
+    }, [dispatch]);
     return (
         <nav className="navbar navbar-expand">
             <div className="navbar-collapse justify-content-end">

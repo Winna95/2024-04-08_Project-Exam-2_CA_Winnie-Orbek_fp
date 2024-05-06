@@ -1,4 +1,5 @@
-const baseUrl = 'https://v2.api.noroff.dev';
+import {baseUrl} from "../components/common/constants";
+
 
 /**
  * Registers a new user by making a POST request to the server.

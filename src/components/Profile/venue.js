@@ -69,30 +69,31 @@ const Venue = (props) => {
         formState: {errors}
     } = useForm({resolver: yupResolver(schema)});
 
+
+
     useEffect(() => {
+        const populateForm = (venue) => {
+            setValue('name', venue.name);
+            setValue('description', venue.description);
+            setValue('mediaUrl', venue.media[0].url);
+            setValue('price', venue.price);
+            setValue('maxGuest', venue.maxGuests);
+            setValue('wifi', venue.meta.wifi);
+            setValue('parking', venue.meta.name);
+            setValue('breakfast', venue.meta.breakfast);
+            setValue('pets', venue.meta.pets);
+            setValue('address', venue.location.address);
+            setValue('city', venue.location.city);
+            setValue('zip', venue.location.zip);
+            setValue('country', venue.location.country);
+            setValue('continent', venue.location.continent);
+            setValue('lat', venue.location.lat);
+            setValue('lng', venue.location.lng);
+        };
         if (!isCreateMode) {
             populateForm(venue)
         }
-    }, []);
-
-    const populateForm = (venue) => {
-        setValue('name', venue.name);
-        setValue('description', venue.description);
-        setValue('mediaUrl', venue.media[0].url);
-        setValue('price', venue.price);
-        setValue('maxGuest', venue.maxGuests);
-        setValue('wifi', venue.meta.wifi);
-        setValue('parking', venue.meta.name);
-        setValue('breakfast', venue.meta.breakfast);
-        setValue('pets', venue.meta.pets);
-        setValue('address', venue.location.address);
-        setValue('city', venue.location.city);
-        setValue('zip', venue.location.zip);
-        setValue('country', venue.location.country);
-        setValue('continent', venue.location.continent);
-        setValue('lat', venue.location.lat);
-        setValue('lng', venue.location.lng);
-    };
+    }, [isCreateMode, venue, setValue]);
 
     async function onSubmit(data) {
         const errors = isCreateMode ?

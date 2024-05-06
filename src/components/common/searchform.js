@@ -41,7 +41,7 @@ const SearchForm = () => {
 
         };
         fetchVenues();
-    }, []);
+    }, [dispatch]);
 
     /**
      * Function to handle the search action.

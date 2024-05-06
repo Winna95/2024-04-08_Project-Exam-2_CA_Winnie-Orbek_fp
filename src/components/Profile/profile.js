@@ -46,7 +46,7 @@ const Profile = () => {
         }
 
         fetchMyProfile();
-    }, [])
+    }, [navigate])
 
 
     return (
@@ -55,7 +55,7 @@ const Profile = () => {
                 <div className="col-12 col-md-6 d-flex align-items-center justify-content-center my-3">
                     <div id="profileAvatar">
                         {avatarUrl === "" ? <div></div> :
-                            <img className="img-fluid object-fit-cover rounded-circle" src={avatarUrl}/>}
+                            <img className="img-fluid object-fit-cover rounded-circle" src={avatarUrl} alt="Avatar"/>}
                     </div>
                 </div>
                 <div

@@ -33,7 +33,7 @@ const ProfileCustomer = () => {
         }
 
         fetchMyBookings();
-    }, []);
+    }, [navigate]);
 
     /**
      * Function to handle the deletion of a booking.
@@ -72,7 +72,7 @@ const ProfileCustomer = () => {
                                         <FontAwesomeIcon icon={faTrashAlt}/>
                                         <div className="error">{errorMessage ? errorMessage : <div/>}</div>
                                     </button>
-                                    <img className="card-img-top object-fit-cover" src={booking.venue.media[0].url}/>
+                                    <img className="card-img-top object-fit-cover" src={booking.venue.media[0].url} alt="card"/>
                                     <div className="card-body mx-auto">
                                         <h5 className="card-title text-center">{booking.venue.name}</h5>
                                         <p className="card-title">From: {new Date(booking.dateFrom).toDateString()}</p>

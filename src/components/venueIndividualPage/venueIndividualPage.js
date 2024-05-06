@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
-import {useDispatch} from "react-redux";
 import Calendar from "react-calendar";
 import "./customCalender.scss";
 import "./venueIndividualPage.scss"
 import {createBooking} from "../../js/booking-api";
 import {getMyProfile} from "../../js/profile-api";
+import {baseUrl} from "../common/constants";
 
-
-const baseUrl = 'https://v2.api.noroff.dev';
 
 /**
  * Adds specified number of days to a given date.
@@ -93,7 +91,6 @@ const IndividualVenue = () => {
     const [isVenueManager, setIsVenueManager] = useState(null)
 
     const navigate = useNavigate()
-    const dispatch = useDispatch();
     let params = useParams();
     const venueId = params.id
 
@@ -222,6 +219,7 @@ const IndividualVenue = () => {
                         />
                     </div>
                 </div>
+                <div className="error mb-2">{newBookingError ? <span>{newBookingError}</span> : <span></span>}</div>
                 <div className="col-12 mb-3">
                     <Calendar
                         onChange={storePickedDate}
@@ -245,7 +243,7 @@ const IndividualVenue = () => {
                     ) : (
                         <div></div>
                     )}
-                    <div className="error">{newBookingError ? <span>{newBookingError}</span> : <span></span>}</div>
+
                 </div>
             </div>
         </div>

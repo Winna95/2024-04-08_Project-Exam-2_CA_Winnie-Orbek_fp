@@ -1,4 +1,4 @@
-const baseUrl = 'https://v2.api.noroff.dev';
+import {baseUrl} from "../components/common/constants";
 
 /**
  * Retrieves the profile information of the currently logged-in user.

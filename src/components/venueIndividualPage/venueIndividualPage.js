@@ -42,7 +42,7 @@ function getDates(startDate, stopDate) {
  * @param {number} maxGuestCountForVenue - Maximum guest count allowed for the venue.
  * @returns {Date[]} - Array of unselectable dates.
  */
-function resolveUnselectableDatesForVenue(bookings, maxGuestCountForVenue) {
+export function resolveUnselectableDatesForVenue(bookings, maxGuestCountForVenue) {
     const bookedDatesWithGuestCount = bookings.map(booking => {
         const fromDate = new Date(booking.dateFrom);
         const toDate = new Date(booking.dateTo);

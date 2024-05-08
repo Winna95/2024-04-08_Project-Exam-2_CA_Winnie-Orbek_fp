@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# 2024-04-08_Project-Exam-2_Winnie-Orbek_fp
+## Holidaze accommodation booking site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Description
+This project is a project exam aiming to consolidate the skills acquired over the past two years. The objective is to develop a front end for Holidaze, an accommodation booking platform. The front end should provide users with an intuitive interface for browsing and booking venues, as well as offering administrative functions for venue management.
 
-## Available Scripts
+The API used for this project can be found under Holidaze in the [Noroff API documentation](https://docs.noroff.dev/docs/v2/).
 
-In the project directory, you can run:
 
-### `npm start`
+### Live Link / Demo Link:
+The project is hosted on netlify, you can visit the site here: 
+- [Netlify link](https://testing--project-exam2-winnie.netlify.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The project is designed in figma, you can see the prototypes here:
+- [Mobile](https://www.figma.com/file/ozSePc1A7707ExY22SENJU/2024-04-08_Project-Exam-2_CA_Winnie-Orbek_fp?type=design&node-id=33%3A1408&mode=design&t=CAR9Dsnz3zDsmNa0-1)
+- [Desktop](https://www.figma.com/file/ozSePc1A7707ExY22SENJU/2024-04-08_Project-Exam-2_CA_Winnie-Orbek_fp?type=design&node-id=0%3A1&mode=design&t=CAR9Dsnz3zDsmNa0-1)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### Technologies Used:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React
+- Figma
+- Jest (for testing)
+- Netlify (for hosting)
 
-### `npm run build`
+### Setup / Installation:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run the project locally, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository: git clone [https://github.com/Winna95/2024-04-08_Project-Exam-2_CA_Winnie-Orbek_fp](https://github.com/Winna95/2024-04-08_Project-Exam-2_CA_Winnie-Orbek_fp)
+2. Navigate to the project directory.
+3. Install dependencies: `npm install`
+4. Production build: npm `npm build`
+5. Start the development server: `npm start`
+6. Open your browser and visit: http://localhost:3000
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Approach:
 
-### `npm run eject`
+The project involved a meticulous planning phase, leveraging tools like Figma for designing the user interface. React was chosen as the primary framework. Test-driven development was adopted, with Reacts Jest tests ensuring the reliability and stability of the application. Code was structured following best practices and design patterns to ensure maintainability and scalability.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Testing:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The project includes testing using Reacts built-in Jest testing framework. To run the tests:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Navigate to the project directory.
+Run the tests: `npm test`
+Jest will execute the tests and provide feedback on the test results.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Status:
+The project is completed and meets all the specified requirements.
 
-## Learn More
+### Credits:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The project is based on coursework designed to showcase the skills acquired over the past two years.
+Special thanks to the Noroff API documentation and the teachers for providing the necessary resources.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -1,0 +1,16 @@
+@import '../node_modules/bootstrap';
+@import 'Custom';
+@import 'variables.scss';
+@import '~bootstrap/scss/bootstrap';
+
+.light-blue-bg {
+  background-color: $primary;
+}
+
+.dark-blue-bg {
+  background-color: $secondary;
+}
+
+.form-bg {
+  background-color: $form-bg;
+}

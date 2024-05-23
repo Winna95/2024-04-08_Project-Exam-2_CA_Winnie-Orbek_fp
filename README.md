@@ -9,7 +9,7 @@ The API used for this project can be found under Holidaze in the [Noroff API doc
 
 ### Live Link / Demo Link:
 The project is hosted on netlify, you can visit the site here: 
-- [Netlify link](https://testing--project-exam2-winnie.netlify.app/)
+- [Netlify link](https://project-exam-2-winnie.netlify.app/)
 
 The project is designed in figma, you can see the prototypes here:
 - [Mobile](https://www.figma.com/file/ozSePc1A7707ExY22SENJU/2024-04-08_Project-Exam-2_CA_Winnie-Orbek_fp?type=design&node-id=33%3A1408&mode=design&t=CAR9Dsnz3zDsmNa0-1)

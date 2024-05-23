@@ -168,7 +168,7 @@ const IndividualVenue = () => {
         <div className="container container-individualVenue">
             <div className="row">
                 <div
-                    className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center align-items-md-start justify-content-md-start mb-3 mt-md-3">
+                    className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center align-items-md-start justify-content-md-start mb-3 mt-md-3 text-break">
                     <h1>{venue.name}</h1>
                     <div>
                         <p>{venue.description}</p>
@@ -183,7 +183,6 @@ const IndividualVenue = () => {
                 </div>
                 <div
                     className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center align-items-md-start justify-content-md-start mb-3">
-                    <div>
                         <b>Information:</b>
                         <div>
                             <p>Max guests: {venue.maxGuests}</p>
@@ -191,9 +190,10 @@ const IndividualVenue = () => {
                             <p>Parking: {venue.meta.parking ? <span>Yes</span> : <span>No</span>}</p>
                             <p>Pets: {venue.meta.pets ? <span>Yes</span> : <span>No</span>}</p>
                         </div>
+                    <div>
                     </div>
                 </div>
-                <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center mb-3">
+                <div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center mb-3 text-break">
                     <div>
                         <b>Location:</b>
                         <div>

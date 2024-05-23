@@ -1,6 +1,5 @@
 import './App.css';
 import Venues from "./components/homepage/homepage";
-import './Custom.scss';
 import './App.scss'
 import {Route, Routes} from "react-router-dom";
 import Layout from "./components/common/Layout";
